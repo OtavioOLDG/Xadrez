@@ -1,6 +1,5 @@
 package application;
 
-import board_game.Piece;
 import chess.ChessPiece;
 
 public class UI {
