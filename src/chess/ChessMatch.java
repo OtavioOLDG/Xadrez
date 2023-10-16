@@ -9,7 +9,7 @@ public class ChessMatch {
 
 	private Board board;
 
-	public ChessMatch() throws BoardException {
+	public ChessMatch() throws BoardException, ChessException {
 		this.board = new Board(8, 8);
 		initialSetUp();
 	}
@@ -24,10 +24,14 @@ public class ChessMatch {
 		return mat;
 	}
 	
-	private void initialSetUp() throws BoardException {
-		board.placePiece(new Rook(board, Color.BLACK), new Position(0,0));
-		board.placePiece(new King(board, Color.WHITE), new Position(7,4));
-		board.placePiece(new King(board, Color.BLACK), new Position(0,4));
+	private void placeNewPiece(char column, int row, ChessPiece piece) throws BoardException, ChessException {
+		board.placePiece(piece, new ChessPosition(column, row).toPosition());
+	}
+	
+	private void initialSetUp() throws BoardException, ChessException {
+		placeNewPiece('a', 8, new Rook(board, Color.BLACK));
+		placeNewPiece('e', 1, new King(board, Color.WHITE));
+		placeNewPiece('e', 8, new King(board, Color.BLACK));
 	}
 	
 }
