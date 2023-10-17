@@ -1,5 +1,7 @@
 package board_game;
 
+import chess.BoardException;
+
 public abstract class Piece {
 	
 	protected Position position;
@@ -18,13 +20,13 @@ public abstract class Piece {
 		return board;
 	}
 	
-	public abstract boolean[][] possibleMoves();
+	public abstract boolean[][] possibleMoves() throws BoardException;
 	
-	public boolean possibleMove() {
+	public boolean possibleMove(Position position) throws BoardException {
 		return possibleMoves()[position.getRow()][position.getColumn()];
 	}
 	
-	public boolean isThereAnyPossibleMove() {
+	public boolean isThereAnyPossibleMove() throws BoardException {
 		boolean[][] mat = possibleMoves();
 		for(int i = 0; i < mat.length; i ++) {
 			for(int j = 0; j < mat.length; j ++) {
